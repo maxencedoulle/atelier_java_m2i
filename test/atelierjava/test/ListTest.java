@@ -65,4 +65,40 @@ public class ListTest {
         int r=factoriel(5);
         System.out.println(r);
     }
-}
+    
+    @Test
+    public void deleteOk () {
+        ArrayList <String> prenoms = new ArrayList<> ();
+        prenoms.add("Guillaume");
+        prenoms.add("Thomas");
+        prenoms.add("David");
+        prenoms.add("Thomas");
+        
+        prenoms.remove("Thomas"); // Le premier renplace le premier élément 
+        
+        for (String prenom: prenoms) 
+             
+            System.out.println(prenom);
+        }
+    
+    
+    @Test
+    public void couleur () {
+        ArrayList <String> couleur1 = new ArrayList<> ();
+        couleur1.add("Rouge");
+        couleur1.add("vert");
+        couleur1.add("Jaune");
+        couleur1.add("Rouge");
+        
+        ArrayList<String> couleur2 = new ArrayList<> ();
+        couleur2.add("Rouge"); 
+        couleur2.add("Jaune");
+        
+        couleur1.removeAll(couleur2); // Fusionne les classes
+        
+        for (String couleur: couleur1) {
+            System.out.println( couleur);
+        }
+     
+    }
+    }
