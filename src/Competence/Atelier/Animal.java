@@ -26,6 +26,7 @@ public class Animal {
     
     public Animal () {
         nbAnimaux ++; 
+        
     }
 }
 
