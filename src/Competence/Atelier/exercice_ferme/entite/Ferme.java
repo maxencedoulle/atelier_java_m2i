@@ -1,5 +1,5 @@
 
-package Competence.Atelier.exercice_ferme;
+package Competence.Atelier.exercice_ferme.entite;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,15 @@ import java.util.ArrayList;
  * @author Formation
  */
 public class Ferme {
+    private String motDePasse;
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
     private double budget;
     private String nom;
     private ArrayList<Terrain> terrains = new ArrayList <> ();
