@@ -1,5 +1,5 @@
 
-package Competence.Atelier.exercice_ferme.entite;
+package competence.atelier_java.exercice_ferme.entite;
 
 /**
  *

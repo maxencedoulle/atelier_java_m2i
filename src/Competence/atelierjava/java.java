@@ -1,4 +1,4 @@
-package Competence.Atelier;
+package competence.atelierjava;
 
 import java.util.ArrayList;
 

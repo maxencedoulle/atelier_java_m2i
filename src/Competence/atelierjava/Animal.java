@@ -1,5 +1,5 @@
 
-package Competence.Atelier;
+package competence.atelierjava;
 
 /**
  *

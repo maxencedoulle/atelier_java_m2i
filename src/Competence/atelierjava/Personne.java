@@ -1,4 +1,4 @@
-package Competence.Atelier;
+package competence.atelierjava;
 
 public class Personne {
 
