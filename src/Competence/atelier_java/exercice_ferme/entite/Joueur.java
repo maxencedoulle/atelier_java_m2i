@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Formation
  */
-public class Ferme {
+public class Joueur {
     private String motDePasse;
 
     public String getMotDePasse() {
@@ -18,7 +18,7 @@ public class Ferme {
         this.motDePasse = motDePasse;
     }
     private double budget;
-    private String nom;
+    private String pseudo;
     private ArrayList<Terrain> terrains = new ArrayList <> ();
     private ArrayList<Ressource> ressourcePossede= new ArrayList <> ();
 
@@ -30,12 +30,12 @@ public class Ferme {
         this.budget = budget;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPseudo() {
+        return pseudo;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public ArrayList<Terrain> getTerrains() {
@@ -52,6 +52,10 @@ public class Ferme {
 
     public void setRessourcePossede(ArrayList<Ressource> ressourcePossede) {
         this.ressourcePossede = ressourcePossede;
+    }
+
+    public void add(Joueur joueur) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
