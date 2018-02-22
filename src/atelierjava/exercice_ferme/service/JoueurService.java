@@ -1,9 +1,9 @@
 package atelierjava.exercice_ferme.service;
 
-import competence.atelier_java.exercice_ferme.entite.Joueur;
+import atelierjava.exercice_ferme.entite.Joueur;
 import atelierjava.exercice_ferme.dao.JoueurDAO;
 
-public class JoueurService1 {
+public class JoueurService {
 
     public void inscription(String pseudo, String mdp) {
         if (pseudo.length() < 3 || pseudo.length() > 8) /* Pseudo entre 3 et 8 lettre */ {
@@ -29,9 +29,9 @@ public class JoueurService1 {
 
         // Verifier que le pseudo est encore di
         JoueurDAO dao = new JoueurDAO();
-        if (dao.existe(pseudo)) {
-            throw new RuntimeException("Ce Pseudo exsite déja ");
-        }
+//        if (dao.existe(pseudo)) {
+//            throw new RuntimeException("Ce Pseudo exsite déja ");
+//        }
         // Ajoute la ferme en BD
         Joueur ferme = new Joueur();
         ferme.setMotDePasse(mdp);
@@ -44,12 +44,14 @@ public class JoueurService1 {
         // Connection
     }
 
-    public boolean connection(String psuedo, String mdp) {
+    public void connection(String psuedo, String mdp) {
         JoueurDAO dao= new JoueurDAO();
-        if (dao.existe(psuedo, mdp) ==true) {
-            return true;
-
+        if (!dao.existe(psuedo, mdp)) {
+            throw new RuntimeException("Connexion échouée");
         }
+        
+        
+        
+        
     }
-
 }

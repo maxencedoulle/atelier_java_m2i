@@ -1,44 +1,57 @@
 package atelierjava.exercice_ferme.dao;
 
-import competence.atelier_java.exercice_ferme.entite.Joueur;
+import atelierjava.exercice_ferme.entite.Joueur;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * @author Formation
  */
 public class JoueurDAO {
+   
 
-    private static ArrayList<Joueur> joueur = new ArrayList<>();
-
-    public void ajouter(Joueur joueur) {
-        joueur.add(joueur);
+    public void ajouter(Joueur j) {
+         EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+    em.getTransaction().begin();
+    em.persist(j);
+    em.getTransaction().commit();    
     }
 
     public Joueur recherche(String login) {
-        for ( Joueur joueureAct : joueur ) {
-            if ( joueureAct.getPseudo().equals(login)) {
-                return joueureAct;
-            }
-        }
-        return null; 
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+        
+        Query query = em.createQuery("SELECT j FROM Joueur j WHERE j.pseudo=:peusoRecherche");
+        query.setParameter("pseudorecherche", login);
+        Joueur j = (Joueur)query.getSingleResult();
+        return j;
     }
 
-    public boolean existe(String login) {
-        for ( Joueur joueurActu : joueur) {
-            if ( joueurActu.equals(login)) 
-                return true;
-        }
-        return false;
+    public boolean existe(String login, String mdp) {
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+        Query query = em.createNamedQuery(""
+                + "SELECT   COUNT(j) "
+                + "FROM     Joueur j "
+                + "WHERE    j.pseudo=:pseudoExistant "
+                + "AND      j.motDePasse=:mdp");
+        query.setParameter("pseudoExistant", login);
+        query.setParameter("pseudoExistant", mdp);
+        Long nbRes = (Long) query.getSingleResult();
+        
+        if ( nbRes==0)
+            return false;
+        
+        return true;
     }
-    
-    public boolean existe (String login, String mdp) {
-        for ( Joueur joueurActu: joueur) {
-            if (joueurActu.getPseudo().equals(login) && 
-                joueurActu.getPseudo().equals(mdp)) {
-                return true;
-            }
-        }
-        return false;
+
+    public boolean existe(String pseudo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+    
+//    public boolean existe (String login) {
+//        return true;
+//    }
+//} 
