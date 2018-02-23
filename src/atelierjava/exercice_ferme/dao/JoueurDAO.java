@@ -31,13 +31,13 @@ public class JoueurDAO {
 
     public boolean existe(String login, String mdp) {
         EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
-        Query query = em.createNamedQuery(""
+        Query query = em.createQuery(""
                 + "SELECT   COUNT(j) "
                 + "FROM     Joueur j "
                 + "WHERE    j.pseudo=:pseudoExistant "
                 + "AND      j.motDePasse=:mdp");
         query.setParameter("pseudoExistant", login);
-        query.setParameter("pseudoExistant", mdp);
+        query.setParameter("mdp", mdp);
         Long nbRes = (Long) query.getSingleResult();
         
         if ( nbRes==0)
@@ -47,11 +47,20 @@ public class JoueurDAO {
     }
 
     public boolean existe(String pseudo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Eécupère EntityManager
+        EntityManager em = Persistence.createEntityManagerFactory("PU").createEntityManager();
+        
+        // Vérifie
+        Query query = em.createQuery("SELECT  COUNT (j) FROM Joueur j WHERE j.pseudo=:pseudoExistant");
+        query.setParameter("PseudoExistant", pseudo);
+        
+        long nbJoueurs = (long) query.getSingleResult();
+        
+        if (nbJoueurs>0 )
+            return true;
+        
+        return false;
     }
 }
     
-//    public boolean existe (String login) {
-//        return true;
-//    }
-//} 
+

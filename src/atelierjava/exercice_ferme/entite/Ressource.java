@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,6 +29,18 @@ public class Ressource implements Serializable {
 
     private TypeRessource designation;
     private String nom;
+    
+    @JoinColumn (name="joueur_id") // Ajoute une clé étrangère dessus. une colonnne 
+    @ManyToOne
+    private Joueur joueur;
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
 
     public TypeRessource getDesignation() {
         return designation;
