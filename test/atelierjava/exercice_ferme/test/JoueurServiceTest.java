@@ -1,5 +1,6 @@
 package atelierjava.exercice_ferme.test;
 
+import atelierjava.exercice_ferme.entite.Joueur;
 import atelierjava.exercice_ferme.service.JoueurService;
 import org.junit.Test;
 
@@ -8,6 +9,14 @@ import org.junit.Test;
  * @author Formation
  */
 public class JoueurServiceTest {
+    
+    @Test 
+    public void rejoindrePartieOK(){
+        JoueurService service = new JoueurService();
+        service.inscription("vince", "Bourg5");
+        Joueur joueur = service.connection("vince", "Bourg5");
+        service.rejoinrdePartie( joueur.getId ());
+    }
 
     @Test
     public void inscriptionOK() {
