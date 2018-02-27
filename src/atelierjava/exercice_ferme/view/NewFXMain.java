@@ -26,12 +26,16 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         
         BorderPane root = new BorderPane ();
-        HBox hbox = new HBox();
+        HBox hbox = new HBox(); // hBOX: Horizontale 
         hbox.getChildren().add( bInsctiption);
         hbox.getChildren().add( bConnexion );
         
         bInsctiption.setOnAction(  e -> {
-            root.setTop(new IncrisptionView(root));
+            root.setCenter(new IncrisptionView(root));
+        } );
+        
+        bConnexion.setOnAction(e -> {
+            root.setCenter(new ConnectionView(root));
         } );
    
         root.setTop (hbox);
