@@ -4,6 +4,8 @@ import atelierjava.exercice_ferme.entite.Joueur;
 import atelierjava.exercice_ferme.dao.JoueurDAO;
 import atelierjava.exercice_ferme.dao.RessourceDAO;
 import atelierjava.exercice_ferme.entite.Ressource;
+import atelierjava.exercice_ferme.exeption.PseudoExisteDejaException;
+import javax.xml.bind.ValidationException;
 
 public class JoueurService {
 
@@ -42,9 +44,9 @@ public class JoueurService {
         }
     }
 
-    public void inscription(String pseudo, String mdp) {
+    public void inscription(String pseudo, String mdp) throws ValidationException, PseudoExisteDejaException {
         if (pseudo.length() < 3 || pseudo.length() > 8) /* Pseudo entre 3 et 8 lettre */ {
-            throw new RuntimeException(" L'identifiant doit contenire enrre 3 et 8 lettres");
+            throw new ValidationException(" L'identifiant doit contenire enrre 3 et 8 lettres ");
         }
 
         // Vérifier que le psuedo est encore existant
@@ -64,11 +66,11 @@ public class JoueurService {
             /*     .* = Veut dire qu'il peut y en avoir plusieures  */
         }
 
-        // Verifier que le pseudo est encore di
+        // Verifier que le pseudo est encore didponible
         JoueurDAO dao = new JoueurDAO();
-//        if (dao.existe(pseudo)) {
-//            throw new RuntimeException("Ce Pseudo exsite déja ");
-//        }
+        if (dao.existe(pseudo)) {
+             throw new PseudoExisteDejaException(mdp);
+        }
         // Ajoute la ferme en BD
         Joueur ferme = new Joueur();
         ferme.setMotDePasse(mdp);
