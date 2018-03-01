@@ -37,12 +37,14 @@ public class ConnectionView extends GridPane{
                 // Appel du service de connecxion
                 JoueurService service = new JoueurService();
                 service.connection(pseudoEntre, mdpEntre);
-                // Renplace le centre du parent par un texte vide 
-                BorderPaneDuParents.setCenter(new Label(" Conncexion réussie"));
+                // Affiche l'écran de jeu
+                BorderPaneDuParents.setCenter(new EcranJeuView());
             } catch (Exception Exemption) {  // Connexion échoué 
                 Alert alert = new Alert (Alert.AlertType.WARNING);
                 alert.setContentText("Conncetion échoué");
-                alert.setHeaderText(" Veuillé échoué");
+                alert.setHeaderText(Exemption.getMessage());
+                
+                Exemption.printStackTrace();
                 
                 alert.showAndWait();
             }
